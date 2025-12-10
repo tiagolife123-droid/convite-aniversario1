@@ -1,25 +1,63 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Página 2</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Convite - Página 2</title>
 <style>
-body { margin:0; padding:0; background:linear-gradient(#001100,#003300); color:white; font-family:Arial; text-align:center; padding:20px; }
-.container { max-width:600px; margin:auto; }
-a { color:#ff0000; font-size:22px; }
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('background2.jpg') center/cover no-repeat fixed;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-shadow: 0 0 10px black;
+    }
+    .container {
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 1.5s ease forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .btn {
+        display: inline-block;
+        padding: 14px 22px;
+        background: rgba(0,0,0,0.6);
+        border-radius: 12px;
+        color: white;
+        font-size: 20px;
+        margin-top: 30px;
+        cursor: pointer;
+        animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
 </style>
 </head>
 <body>
 <div class="container">
-<p>Então negas, essa merda vai ser <strong>dia 16/12/2025 às 19h30</strong></p>
-<p>O endereço foi o mais difícil: <strong>Mercado dos Pinhões</strong></p>
-<p>AAA E TEM DRESSCODE ESPECIAL</p>
-<a href="pagina3.html">Segue o baile</a>
+    <h1 id="texto"></h1>
+    <a class="btn" href="pagina3.html">AAAAH E TEM DRESSCODE ESPECIALLLLL! 👉</a>
 </div>
-<audio autoplay loop>
-<source src="BABILÔNIA 2000.mp3" type="audio/mpeg">
-</audio>
+<script>
+const txt = "Então negas, essa merda vai ser dia 16/12, a hora que der pra ir mas se quiser ir às 19h tá joia. O endereço foi o mais difícil, por mim ficava todo mundo em casa, mas vai ser no mercado dos pinhões para não perder a tradição.";
+let i = 0;
+function typeWriter() {
+    if (i < txt.length) {
+        document.getElementById('texto').innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, 45);
+    }
+}
+typeWriter();
+</script>
 </body>
 </html>
