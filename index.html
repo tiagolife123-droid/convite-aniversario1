@@ -1,98 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Convite - Página 1</title>
+color: white;
+font-size: 20px;
+margin-top: 25px;
+cursor: pointer;
+transition: transform .2s;
+animation: pulse 1.5s infinite;
+text-decoration: none;
+}
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: url('background1.jpg') center/cover no-repeat fixed;
-        font-family: 'Poppins', sans-serif;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-shadow: 0 0 10px black;
-        overflow: hidden;
-    }
 
-    .container {
-        width: 90%;
-        max-width: 600px;
-        text-align: center;
-        animation: fadeIn 1.5s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .foto {
-        width: 250px;
-        height: 250px;
-        background: rgba(255,255,255,0.1);
-        border: 2px dashed white;
-        border-radius: 15px;
-        margin: 20px auto;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 14px 24px;
-        background: rgba(0,0,0,0.6);
-        border-radius: 12px;
-        color: white;
-        font-size: 20px;
-        margin-top: 25px;
-        cursor: pointer;
-        transition: transform .2s;
-        animation: pulse 1.5s infinite;
-        text-decoration: none;
-    }
-
-    @keyframes pulse {
-        0%,100% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-    }
+@keyframes pulse {
+0%,100% { transform: scale(1); }
+50% { transform: scale(1.1); }
+}
 </style>
 </head>
-
 <body>
+<div class="smoke"></div>
+<div class="smoke" style="left:60%; animation-duration: 18s; opacity:0.4;"></div>
 
-<!-- ÁUDIO CORRIGIDO -->
-<audio autoplay loop playsinline>
-    <source src="BABILONIA2K.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio.
-</audio>
+
+<!-- gotas de sangue geradas automaticamente -->
+<script>
+for(let i=0;i<25;i++){
+const drop = document.createElement('div');
+drop.className = 'blood-drop';
+drop.style.left = Math.random()*100 + 'vw';
+drop.style.animationDelay = Math.random()*3 + 's';
+drop.style.height = 12 + Math.random()*25 + 'px';
+document.body.appendChild(drop);
+}
+</script>
+
 
 <div class="container">
-    <h1 id="texto"></h1>
-    <div class="foto"></div>
-
-    <a class="btn" href="pagina2.html">
-        👉 Clica aqui VAGABUND@, PILANTR@, DESGRAÇAD@!!! 👈
-    </a>
+<h1 id="texto"></h1>
+<div class="foto"></div>
+<a class="btn" href="pagina2.html">Clica aqui vagabund@</a>
 </div>
+
 
 <script>
 const txt = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser?";
 let i = 0;
-
 function typeWriter() {
-    if (i < txt.length) {
-        document.getElementById("texto").innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeWriter, 45);
-    }
+if (i < txt.length) {
+document.getElementById("texto").innerHTML += txt.charAt(i);
+i++;
+setTimeout(typeWriter, 45);
+}
 }
 typeWriter();
 </script>
+
 
 </body>
 </html>
