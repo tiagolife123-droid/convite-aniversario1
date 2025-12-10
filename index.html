@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Convite - Página 1</title>
+
 <style>
     body {
         margin: 0;
@@ -17,17 +18,21 @@
         align-items: center;
         height: 100vh;
         text-shadow: 0 0 10px black;
+        overflow: hidden;
     }
+
     .container {
         width: 90%;
         max-width: 600px;
         text-align: center;
         animation: fadeIn 1.5s ease forwards;
     }
+
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
+
     .foto {
         width: 250px;
         height: 250px;
@@ -36,6 +41,7 @@
         border-radius: 15px;
         margin: 20px auto;
     }
+
     .btn {
         display: inline-block;
         padding: 14px 24px;
@@ -47,22 +53,37 @@
         cursor: pointer;
         transition: transform .2s;
         animation: pulse 1.5s infinite;
+        text-decoration: none;
     }
-    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); }}
+
+    @keyframes pulse {
+        0%,100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
 </style>
 </head>
+
 <body>
-<audio autoplay loop>
-    <source src="BABILONIA2000.mp3" type="audio/mpeg" />
+
+<!-- ÁUDIO CORRIGIDO -->
+<audio autoplay loop playsinline>
+    <source src="BABILONIA2K.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
 </audio>
+
 <div class="container">
     <h1 id="texto"></h1>
     <div class="foto"></div>
-    <a class="btn" href="pagina2.html">👉 Clica aqui VAGABUND@, PILANTR@, DEGSRAÇAD@!!! 👈</a>
+
+    <a class="btn" href="pagina2.html">
+        👉 Clica aqui VAGABUND@, PILANTR@, DESGRAÇAD@!!! 👈
+    </a>
 </div>
+
 <script>
 const txt = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser?";
 let i = 0;
+
 function typeWriter() {
     if (i < txt.length) {
         document.getElementById("texto").innerHTML += txt.charAt(i);
@@ -72,5 +93,6 @@ function typeWriter() {
 }
 typeWriter();
 </script>
+
 </body>
 </html>
