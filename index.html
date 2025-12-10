@@ -8,9 +8,7 @@
     body {
         margin: 0;
         padding: 0;
-        background: linear-gradient(135deg, #ff0000, #111, #009900);
-        background-size: 400% 400%;
-        animation: bgChaos 6s infinite alternate;
+        background: url('background1.jpg') center/cover no-repeat fixed;
         font-family: 'Poppins', sans-serif;
         color: white;
         display: flex;
@@ -18,93 +16,61 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        text-align: center;
-        overflow: hidden;
-    }
-    @keyframes bgChaos {
-        0% { background-position: 0% 0%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 50% 100%; }
+        text-shadow: 0 0 10px black;
     }
     .container {
         width: 90%;
-        max-width: 700px;
-        backdrop-filter: blur(6px);
-        padding: 20px;
-        border-radius: 20px;
-        background: rgba(0,0,0,0.45);
-        animation: tiltChaos 2.2s infinite;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 1.5s ease forwards;
     }
-    @keyframes tiltChaos {
-        0% { transform: rotate(0deg) scale(1); }
-        25% { transform: rotate(1deg) scale(1.02); }
-        50% { transform: rotate(-1deg) scale(1.03); }
-        75% { transform: rotate(1deg) scale(1.01); }
-        100% { transform: rotate(0deg) scale(1); }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-    .foto-area {
+    .foto {
         width: 250px;
         height: 250px;
-        border-radius: 16px;
         background: rgba(255,255,255,0.1);
         border: 2px dashed white;
-        margin: 0 auto 25px;
-        animation: flicker 2s infinite;
-    }
-    @keyframes flicker {
-        0%,100% { opacity: 1; }
-        50% { opacity: 0.7; }
-    }
-    #texto {
-        font-size: 22px;
-        text-shadow: 0 0 10px black;
+        border-radius: 15px;
+        margin: 20px auto;
     }
     .btn {
-        margin-top: 20px;
+        display: inline-block;
         padding: 14px 24px;
-        font-size: 22px;
-        color: white;
         background: rgba(0,0,0,0.6);
         border-radius: 12px;
+        color: white;
+        font-size: 20px;
+        margin-top: 25px;
         cursor: pointer;
-        animation: bounce 1.2s infinite;
-        text-decoration: none;
-        display: inline-block;
+        transition: transform .2s;
+        animation: pulse 1.5s infinite;
     }
-    @keyframes bounce {
-        0%,100% { transform: translateY(0); }
-        50% { transform: translateY(-14px); }
-    }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); }}
 </style>
 </head>
 <body>
-<audio id="music" src="BABILONIA2000.mp3" autoplay loop></audio>
+<audio autoplay loop>
+    <source src="BABILONIA2000.mp3" type="audio/mpeg" />
+</audio>
 <div class="container">
-    <div class="foto-area"></div>
-    <p id="texto"></p>
-    <a class="btn" href="pagina2.html">🤣👉 Próxima Página 👈🤣</a>
+    <h1 id="texto"></h1>
+    <div class="foto"></div>
+    <a class="btn" href="pagina2.html">👉 Clica aqui vagabund@!!! 👈</a>
 </div>
 <script>
-const txt = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser? Clica aqui vagabund@";
+const txt = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser?";
 let i = 0;
-function typeWriter(){
-    if(i < txt.length){
+function typeWriter() {
+    if (i < txt.length) {
         document.getElementById("texto").innerHTML += txt.charAt(i);
         i++;
         setTimeout(typeWriter, 45);
     }
 }
 typeWriter();
-
-window.addEventListener('load', () => {
-    const audio = document.getElementById('music');
-    if(audio){
-        audio.volume = 0.75;
-        audio.play().catch(() => {
-            document.body.addEventListener('click', () => audio.play(), { once: true });
-        });
-    }
-});
 </script>
 </body>
 </html>
