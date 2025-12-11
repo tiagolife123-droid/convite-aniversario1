@@ -1,89 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Convite - Página 2</title>
-
+<link rel="stylesheet" href="overlay.css">
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: url('background2.jpg') center/cover no-repeat fixed;
-        font-family: 'Poppins', sans-serif;
-        color: white;
-        text-shadow: 0 0 10px black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        padding: 20px;
-        animation: fadePage 1s ease forwards;
-    }
-
-    @keyframes fadePage {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    .container {
-        width: 90%;
-        max-width: 650px;
-        text-align: center;
-        animation: fadeIn 1.4s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(25px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 14px 22px;
-        border-radius: 14px;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        text-decoration: none;
-        margin-top: 30px;
-        border: 2px solid #00ff88;
-        box-shadow: 0 0 14px #00ff88;
-        background: rgba(0,0,0,0.55);
-        animation: pulseBtn 2s infinite;
-        transition: 0.3s;
-    }
-
-    @keyframes pulseBtn {
-        0%,100% { box-shadow: 0 0 14px #00ff88; }
-        50% { box-shadow: 0 0 20px #ff0033; border-color: #ff0033; }
-    }
+:root{--accent:#ff2b2b;--green:#00ff66}
+html,body{height:100%;margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(135deg,#0a0000,#220000 40%,#002200);color:#fff;}
+.wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:28px;box-sizing:border-box}
+.card{width:100%;max-width:760px;background:rgba(0,0,0,0.56);padding:24px;border-radius:16px;border:2px solid rgba(0,255,102,0.06);box-shadow:0 20px 60px rgba(0,0,0,0.6);text-align:center;position:relative;overflow:hidden;}
+h1{font-size:20px;line-height:1.45;text-align:left;}
+.cta{display:inline-flex;gap:12px;align-items:center;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,#ff5b5b,#ff2b2b);color:#111;font-weight:800;text-decoration:none;margin-top:18px;box-shadow:0 8px 24px rgba(255,0,0,0.12);cursor:pointer}
+@media(max-width:480px){h1{font-size:16px}}
 </style>
 </head>
+<body class="bg-fallback">
 
-<body>
+<div class="smoke-layer"></div>
+<div class="smoke-layer s2"></div>
 
-<div class="container">
-    <h1 id="texto"></h1>
+<!-- audio optional -->
+<audio id="music2" src="BABILONIA2K.mp3" loop preload="auto" playsinline></audio>
 
-    <a class="btn" href="pagina3.html">
-        💥 IR PARA O DRESSCODE 💥
-    </a>
+<div class="wrap page-fade">
+  <div class="card neon-aura">
+    <h1 id="typing"></h1>
+    <a class="cta" href="pagina3.html">💥 IR PARA O DRESSCODE 💥</a>
+  </div>
 </div>
 
 <script>
-const txt = "Então negas, essa merda vai ser dia 16/12, a hora que der pra ir mas se quiser ir às 19h tá joia, mas também não é obrigado. O endereço foi o mais difícil, por mim deixava todo mundo em casa, mas vai ser no Mercado dos Pinhões para não perder a tradição.\n\nAAAAH E TEM DRESSCODE ESPECIAL!";
-let i = 0;
+const txt = "Então negas, essa merda vai ser dia 16/12, a hora que der pra ir mas se quiser ir às 19h30 tá joia, mas também não é obrigado. O endereço foi o mais difícil, por mim deixava todo mundo em casa, mas vai ser no Mercado dos Pinhões para não perder a tradição. AAAAH E TEM DRESSCODE ESPECIAL!";
+let i=0; const out=document.getElementById('typing');
+(function type(){ if(i<txt.length){ out.innerHTML += txt.charAt(i++); setTimeout(type,36); } })();
 
-function typeWriter() {
-    if (i < txt.length) {
-        document.getElementById('texto').innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeWriter, 40);
-    }
+// particles + blood drops
+function spawnParticles(n){
+  for(let i=0;i<n;i++){ const el=document.createElement('div'); el.className='poison-particle'; el.style.left=(Math.random()*100)+'vw'; el.style.top=(70+Math.random()*25)+'vh'; el.style.animationDelay=(Math.random()*6)+'s'; document.body.appendChild(el); }
 }
-typeWriter();
-</script>
+function spawnDrops(n){
+  for(let i=0;i<n;i++){ const d=document.createElement('div'); d.className='blood-drop'; d.style.left=(Math.random()*100)+'vw'; d.style.width=(6+Math.random()*10)+'px'; d.style.height=(10+Math.random()*26)+'px'; d.style.animationDuration=(2.8+Math.random()*3.6)+'s'; d.style.animationDelay=(Math.random()*3)+'s'; document.body.appendChild(d); }
+}
+spawnParticles(12); spawnDrops(18);
 
+// autoplay attempt (some browsers block)
+const audio=document.getElementById('music2'); audio.volume=0.75; audio.play().catch(()=>{ /* ok if blocked */ });
+</script>
 </body>
 </html>
