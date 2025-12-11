@@ -1,58 +1,100 @@
 <!DOCTYPE html>
-color: white;
-font-size: 20px;
-margin-top: 25px;
-cursor: pointer;
-transition: transform .2s;
-animation: pulse 1.5s infinite;
-text-decoration: none;
-}
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Convite - Página 1</title>
 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('background1.jpg') center/cover no-repeat fixed;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-shadow: 0 0 10px black;
+        animation: fadePage 1s ease forwards;
+    }
 
-@keyframes pulse {
-0%,100% { transform: scale(1); }
-50% { transform: scale(1.1); }
-}
+    @keyframes fadePage {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .container {
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 1.4s ease forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .foto {
+        width: 250px;
+        height: 250px;
+        background: rgba(255,255,255,0.1);
+        border: 2px dashed white;
+        border-radius: 15px;
+        margin: 20px auto;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 14px 24px;
+        border-radius: 14px;
+        color: white;
+        font-size: 20px;
+        margin-top: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 1px;
+        background: rgba(0,0,0,0.5);
+        border: 2px solid #ff0033;
+        box-shadow: 0 0 12px #ff0033;
+        transition: .2s;
+        animation: pulseNeon 1.6s infinite;
+    }
+
+    @keyframes pulseNeon {
+        0%,100% { box-shadow: 0 0 12px #ff0033; }
+        50% { box-shadow: 0 0 18px #00ff88; border-color: #00ff88; }
+    }
 </style>
 </head>
+
 <body>
-<div class="smoke"></div>
-<div class="smoke" style="left:60%; animation-duration: 18s; opacity:0.4;"></div>
-
-
-<!-- gotas de sangue geradas automaticamente -->
-<script>
-for(let i=0;i<25;i++){
-const drop = document.createElement('div');
-drop.className = 'blood-drop';
-drop.style.left = Math.random()*100 + 'vw';
-drop.style.animationDelay = Math.random()*3 + 's';
-drop.style.height = 12 + Math.random()*25 + 'px';
-document.body.appendChild(drop);
-}
-</script>
-
+<audio autoplay loop playsinline>
+    <source src="BABILONIA2K.mp3" type="audio/mpeg" />
+</audio>
 
 <div class="container">
-<h1 id="texto"></h1>
-<div class="foto"></div>
-<a class="btn" href="pagina2.html">Clica aqui vagabund@</a>
-</div>
+    <h1 id="texto"></h1>
+    <div class="foto"></div>
 
+    <a class="btn" href="pagina2.html">👉 Clica aqui vagabund@!!! 👈</a>
+</div>
 
 <script>
 const txt = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser?";
 let i = 0;
+
 function typeWriter() {
-if (i < txt.length) {
-document.getElementById("texto").innerHTML += txt.charAt(i);
-i++;
-setTimeout(typeWriter, 45);
-}
+    if (i < txt.length) {
+        document.getElementById("texto").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, 45);
+    }
 }
 typeWriter();
 </script>
-
 
 </body>
 </html>
