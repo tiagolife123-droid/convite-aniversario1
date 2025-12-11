@@ -1,45 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Página 3</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Convite - Página 3</title>
+
+<style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
+        margin: 0;
+        padding: 0;
+        background: url('background3.jpg') center/cover no-repeat fixed;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        text-shadow: 0 0 12px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+        animation: fadePage 1s ease forwards;
     }
+
+    @keyframes fadePage {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
     .container {
-      max-width: 90%;
-      padding: 20px;
-      border: 2px solid #8f0000;
-      background: rgba(0, 0, 0, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 0 20px #8f0000;
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        animation: popIn 1.3s ease forwards;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #ff2b2b;
+
+    @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.85); }
+        100% { opacity: 1; transform: scale(1); }
     }
-    p {
-      font-size: 1.2rem;
-      line-height: 1.4;
+
+    .emojiSpin {
+        display: inline-block;
+        animation: spin 2.5s linear infinite;
+        font-size: 40px;
+        margin: 10px;
     }
-  </style>
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Info Final</h1>
-    <p>MENTIRA SEUS OTARIOS, PODEM IR DO JEITO QUE QUISEREM 👍🏻</p>
-  </div>
+
+<div class="container">
+    <div class="emojiSpin">🔥</div>
+    <h1 id="texto"></h1>
+    <div class="emojiSpin">💀</div>
+</div>
+
+<script>
+const txt = "MENTIRA SEUS OTÁRIOS, PODEM IR DO JEITO QUE QUISEREM 👍🏻";
+let i = 0;
+
+function typeWriter() {
+    if (i < txt.length) {
+        document.getElementById('texto').innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+    }
+}
+typeWriter();
+</script>
+
 </body>
 </html>
