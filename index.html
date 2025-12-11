@@ -1,115 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Convite - Página 1</title>
-<link rel="stylesheet" href="overlay.css">
+
 <style>
-:root{--accent:#ff2b2b;--green:#00ff66}
-html,body{height:100%;margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(135deg,#0b0000,#220000 40%,#002200);color:#fff;}
-.wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:28px;box-sizing:border-box}
-.card{width:100%;max-width:720px;background:rgba(0,0,0,0.56);padding:24px;border-radius:16px;border:2px solid rgba(255,0,0,0.12);box-shadow:0 20px 60px rgba(0,0,0,0.6);text-align:center;position:relative;overflow:hidden;}
-.foto{width:260px;height:260px;margin:10px auto;border-radius:14px;border:2px dashed rgba(255,0,0,0.22);background:rgba(255,255,255,0.03);}
-h1{margin:6px 0 10px;font-size:22px;line-height:1.2}
-.cta{display:inline-flex;gap:12px;align-items:center;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,#ff5b5b,#ff2b2b);color:#111;font-weight:800;text-decoration:none;margin-top:18px;box-shadow:0 8px 24px rgba(255,0,0,0.12);cursor:pointer}
-.controls{margin-top:14px;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;}
-.playbtn{padding:10px 14px;border-radius:10px;border:none;background:#00d36a;color:#002220;font-weight:700;cursor:pointer}
-.eq{display:flex;gap:6px;align-items:end;margin-top:10px;height:60px}
-.bar{width:8px;height:18px;background:linear-gradient(#b3ffcf,#00d36a);border-radius:6px;transition:height .15s ease}
-@media(max-width:480px){.foto{width:160px;height:160px}h1{font-size:18px}}
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        /* FUNDO APOCALIPSE */
+        background:
+            repeating-radial-gradient(circle, #1a0000 0%, #3f0000 10%, #1a0000 20%),
+            radial-gradient(circle at center, #00ff55 0%, transparent 60%);
+        animation: smoke 6s infinite alternate ease-in-out;
+    }
+
+    @keyframes smoke {
+        0% { filter: blur(2px) brightness(0.9); }
+        100% { filter: blur(6px) brightness(0.5); }
+    }
+
+    .container { width: 90%; max-width: 600px; }
+
+    .foto {
+        width: 250px;
+        height: 250px;
+        border: 2px dashed white;
+        border-radius: 15px;
+        margin: 20px auto;
+        background: rgba(255,255,255,0.05);
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 15px 25px;
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+        border-radius: 14px;
+        border: 2px solid crimson;
+        box-shadow: 0 0 15px crimson;
+        background: rgba(0,0,0,0.5);
+        animation: neonPulse 2s infinite;
+    }
+
+    @keyframes neonPulse {
+        0%,100% { box-shadow: 0 0 15px crimson; }
+        50% { box-shadow: 0 0 25px #00ff66; border-color: #00ff66; }
+    }
+
+    #playAudioBtn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: black;
+        color: white;
+        border-radius: 8px;
+        border: 1px solid #00ff66;
+        display: none;
+    }
 </style>
 </head>
-<body class="bg-fallback">
 
-<!-- smoke & effects layers -->
-<div class="smoke-layer"></div>
-<div class="smoke-layer s2"></div>
-<div class="smoke-layer s3"></div>
-
-<!-- audio -->
-<audio id="musica" loop>
-    <source src="BABILONIA2K.mp3" type="audio/mpeg">
+<body>
+<audio id="music" loop>
+    <source src="BABILONIA2K.mp3" type="audio/mpeg" />
 </audio>
 
-<script>
-document.addEventListener("click", function() {
-    const audio = document.getElementById("musica");
-    audio.volume = 1.0;
-    audio.play();
-}, { once: true });
-</script>
+<div class="container">
+    <h1 id="texto"></h1>
 
+    <div class="foto"></div>
 
-<div class="wrap page-fade">
-  <div class="card neon-aura" id="card">
-    <h1 id="typing"></h1>
+    <a class="btn" href="pagina2.html">👉 Clica aqui vagabund@ 👈</a>
 
-    <a class="cta" href="pagina2.html">🤣👉 Próxima Página 👈🤣</a>
-
-    <div class="controls">
-      <button id="playBtn" class="playbtn">🔊 Pausar</button>
-    </div>
-
-    <div class="eq" aria-hidden="true">
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    </div>
-
-  </div>
+    <button id="playAudioBtn">Ativar Som 🔊</button>
 </div>
 
 <script>
-// typing
-const text = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser? Clica aqui vagabund@";
-let p=0; const out=document.getElementById('typing');
-(function type(){ if(p<text.length){ out.innerHTML += text.charAt(p++); setTimeout(type,36); } })();
+const txt = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser?";
+let i = 0;
 
-// audio & visualizer
-const audio=document.getElementById('music');
-const playBtn=document.getElementById('playBtn');
-playBtn.addEventListener('click', ()=>{
-  if(audio.paused){ audio.play(); playBtn.textContent='🔊 Pausar'; startEq(); } else { audio.pause(); playBtn.textContent='🎵 Tocar'; stopEq(); }
-});
-window.addEventListener('load', ()=>{
-  audio.volume=0.75;
-  audio.play().catch(()=>{ /* blocked until user interacts */ });
-  startEq();
-});
-
-// equalizer bars
-let eqInt=null;
-function startEq(){ const bars=document.querySelectorAll('.bar'); if(eqInt) clearInterval(eqInt); eqInt=setInterval(()=>{ bars.forEach(b=> b.style.height = (10 + Math.random()*70) + 'px') }, 180); }
-function stopEq(){ clearInterval(eqInt); document.querySelectorAll('.bar').forEach(b=> b.style.height='18px'); }
-
-// poison particles
-function spawnParticles(n){
-  for(let i=0;i<n;i++){
-    const el=document.createElement('div');
-    el.className='poison-particle';
-    el.style.left = (Math.random()*100)+'vw';
-    el.style.top = (60 + Math.random()*30)+'vh';
-    el.style.animationDelay = (Math.random()*6)+'s';
-    el.style.opacity = 0.9*Math.random()+0.1;
-    document.body.appendChild(el);
-  }
+function typeWriter() {
+    if (i < txt.length) {
+        texto.textContent += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, 45);
+    }
 }
-spawnParticles(16);
+typeWriter();
 
-// blood drops
-function spawnDrops(count){
-  for(let i=0;i<count;i++){
-    const d=document.createElement('div');
-    d.className='blood-drop';
-    d.style.left = (Math.random()*100)+'vw';
-    d.style.width = (6 + Math.random()*12)+'px';
-    d.style.height = (10 + Math.random()*28)+'px';
-    d.style.animationDuration = (2.6 + Math.random()*3.2) + 's';
-    d.style.animationDelay = (Math.random()*3)+'s';
-    document.body.appendChild(d);
-  }
+// ATIVAR SOM NO IPHONE
+const audio = document.getElementById("music");
+const btn = document.getElementById("playAudioBtn");
+
+function isIOS() {
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
-spawnDrops(22);
 
+if (!isIOS()) {
+    audio.play().catch(()=>{});
+} else {
+    btn.style.display = "inline-block";
+    btn.onclick = () => {
+        audio.play();
+        btn.style.display = "none";
+    };
+}
 </script>
+
 </body>
 </html>
