@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Convite – Página 2</title>
+<title>Convite - Página 2</title>
 
 <style>
     body {
@@ -12,90 +12,76 @@
         background: url('background2.jpg') center/cover no-repeat fixed;
         font-family: 'Poppins', sans-serif;
         color: white;
+        text-shadow: 0 0 10px black;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        text-align: center;
-        text-shadow: 0 0 10px black;
-        animation: fadeIn 1.5s ease forwards;
+        padding: 20px;
+        animation: fadePage 1s ease forwards;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    @keyframes fadePage {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     .container {
         width: 90%;
         max-width: 650px;
+        text-align: center;
+        animation: fadeIn 1.4s ease forwards;
     }
 
-    h1 {
-        font-size: 24px;
-        margin-bottom: 30px;
-        line-height: 1.4;
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(25px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .btn {
         display: inline-block;
-        padding: 14px 24px;
-        background: rgba(0,0,0,0.6);
-        border-radius: 12px;
+        padding: 14px 22px;
+        border-radius: 14px;
         color: white;
         font-size: 20px;
-        margin-top: 25px;
         cursor: pointer;
-        transition: transform .2s;
-        animation: pulse 1.5s infinite;
+        text-decoration: none;
+        margin-top: 30px;
+        border: 2px solid #00ff88;
+        box-shadow: 0 0 14px #00ff88;
+        background: rgba(0,0,0,0.55);
+        animation: pulseBtn 2s infinite;
+        transition: 0.3s;
     }
 
-    @keyframes pulse {
-        0%,100% { transform: scale(1); }
-        50% { transform: scale(1.1); }
+    @keyframes pulseBtn {
+        0%,100% { box-shadow: 0 0 14px #00ff88; }
+        50% { box-shadow: 0 0 20px #ff0033; border-color: #ff0033; }
     }
-
-    /* Efeito de digitação */
-    #texto {
-        border-right: 2px solid #ff0000;
-        white-space: normal;
-        overflow: hidden;
-        display: inline-block;
-        animation: blink 0.7s infinite;
-    }
-
-    @keyframes blink {
-        0% { border-color: transparent; }
-        50% { border-color: red; }
-        100% { border-color: transparent; }
-    }
-
 </style>
 </head>
+
 <body>
-<audio autoplay loop>
-    <source src="BABILONIA2000.mp3" type="audio/mpeg" />
-</audio>
 
 <div class="container">
     <h1 id="texto"></h1>
 
-    <a class="btn" href="pagina3.html">🔥 AAAAH TEM DRESSCODE ESPECIAL!!!!!!! 🔥</a>
+    <a class="btn" href="pagina3.html">
+        💥 IR PARA O DRESSCODE 💥
+    </a>
 </div>
 
 <script>
-const txt = "Então negas, essa merda vai ser dia 16/12, a hora que der pra ir mas se quiser ir às 19h tá joia, mas também não é obrigado. O endereço foi o mais difícil, por mim ficava todo mundo em casa, mas vai ser no mercado dos pinhões para não perder a tradição.";
+const txt = "Então negas, essa merda vai ser dia 16/12, a hora que der pra ir mas se quiser ir às 19h tá joia, mas também não é obrigado. O endereço foi o mais difícil, por mim deixava todo mundo em casa, mas vai ser no Mercado dos Pinhões para não perder a tradição.\n\nAAAAH E TEM DRESSCODE ESPECIAL!";
 let i = 0;
 
 function typeWriter() {
     if (i < txt.length) {
-        document.getElementById("texto").innerHTML += txt.charAt(i);
+        document.getElementById('texto').innerHTML += txt.charAt(i);
         i++;
         setTimeout(typeWriter, 40);
     }
 }
-
 typeWriter();
 </script>
 
