@@ -1,100 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Convite - Página 1</title>
-
+<link rel="stylesheet" href="overlay.css">
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: url('background1.jpg') center/cover no-repeat fixed;
-        font-family: 'Poppins', sans-serif;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-shadow: 0 0 10px black;
-        animation: fadePage 1s ease forwards;
-    }
-
-    @keyframes fadePage {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    .container {
-        width: 90%;
-        max-width: 600px;
-        text-align: center;
-        animation: fadeIn 1.4s ease forwards;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .foto {
-        width: 250px;
-        height: 250px;
-        background: rgba(255,255,255,0.1);
-        border: 2px dashed white;
-        border-radius: 15px;
-        margin: 20px auto;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 14px 24px;
-        border-radius: 14px;
-        color: white;
-        font-size: 20px;
-        margin-top: 25px;
-        cursor: pointer;
-        text-decoration: none;
-        letter-spacing: 1px;
-        background: rgba(0,0,0,0.5);
-        border: 2px solid #ff0033;
-        box-shadow: 0 0 12px #ff0033;
-        transition: .2s;
-        animation: pulseNeon 1.6s infinite;
-    }
-
-    @keyframes pulseNeon {
-        0%,100% { box-shadow: 0 0 12px #ff0033; }
-        50% { box-shadow: 0 0 18px #00ff88; border-color: #00ff88; }
-    }
+:root{--accent:#ff2b2b;--green:#00ff66}
+html,body{height:100%;margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(135deg,#0b0000,#220000 40%,#002200);color:#fff;}
+.wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:28px;box-sizing:border-box}
+.card{width:100%;max-width:720px;background:rgba(0,0,0,0.56);padding:24px;border-radius:16px;border:2px solid rgba(255,0,0,0.12);box-shadow:0 20px 60px rgba(0,0,0,0.6);text-align:center;position:relative;overflow:hidden;}
+.foto{width:260px;height:260px;margin:10px auto;border-radius:14px;border:2px dashed rgba(255,0,0,0.22);background:rgba(255,255,255,0.03);}
+h1{margin:6px 0 10px;font-size:22px;line-height:1.2}
+.cta{display:inline-flex;gap:12px;align-items:center;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,#ff5b5b,#ff2b2b);color:#111;font-weight:800;text-decoration:none;margin-top:18px;box-shadow:0 8px 24px rgba(255,0,0,0.12);cursor:pointer}
+.controls{margin-top:14px;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;}
+.playbtn{padding:10px 14px;border-radius:10px;border:none;background:#00d36a;color:#002220;font-weight:700;cursor:pointer}
+.eq{display:flex;gap:6px;align-items:end;margin-top:10px;height:60px}
+.bar{width:8px;height:18px;background:linear-gradient(#b3ffcf,#00d36a);border-radius:6px;transition:height .15s ease}
+@media(max-width:480px){.foto{width:160px;height:160px}h1{font-size:18px}}
 </style>
 </head>
+<body class="bg-fallback">
 
-<body>
-<audio autoplay loop playsinline>
-    <source src="BABILONIA2K.mp3" type="audio/mpeg" />
-</audio>
+<!-- smoke & effects layers -->
+<div class="smoke-layer"></div>
+<div class="smoke-layer s2"></div>
+<div class="smoke-layer s3"></div>
 
-<div class="container">
-    <h1 id="texto"></h1>
-    <div class="foto"></div>
+<!-- audio -->
+<audio id="music" src="BABILONIA2K.mp3" loop preload="auto" playsinline></audio>
 
-    <a class="btn" href="pagina2.html">👉 Clica aqui vagabund@!!! 👈</a>
+<div class="wrap page-fade">
+  <div class="card neon-aura" id="card">
+    <img class="foto" id="fotoPlaceholder" alt="Espaço para foto - substitua esta imagem">
+    <h1 id="typing"></h1>
+
+    <a class="cta" href="pagina2.html">🤣👉 Próxima Página 👈🤣</a>
+
+    <div class="controls">
+      <button id="playBtn" class="playbtn">🔊 Pausar</button>
+    </div>
+
+    <div class="eq" aria-hidden="true">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+  </div>
 </div>
 
 <script>
-const txt = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser?";
-let i = 0;
+// typing
+const text = "Olaaar, você está sendo convidado pro evento mais GAG do ano. Ah, mas quando é? Onde vai ser? Clica aqui vagabund@";
+let p=0; const out=document.getElementById('typing');
+(function type(){ if(p<text.length){ out.innerHTML += text.charAt(p++); setTimeout(type,36); } })();
 
-function typeWriter() {
-    if (i < txt.length) {
-        document.getElementById("texto").innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeWriter, 45);
-    }
+// audio & visualizer
+const audio=document.getElementById('music');
+const playBtn=document.getElementById('playBtn');
+playBtn.addEventListener('click', ()=>{
+  if(audio.paused){ audio.play(); playBtn.textContent='🔊 Pausar'; startEq(); } else { audio.pause(); playBtn.textContent='🎵 Tocar'; stopEq(); }
+});
+window.addEventListener('load', ()=>{
+  audio.volume=0.75;
+  audio.play().catch(()=>{ /* blocked until user interacts */ });
+  startEq();
+});
+
+// equalizer bars
+let eqInt=null;
+function startEq(){ const bars=document.querySelectorAll('.bar'); if(eqInt) clearInterval(eqInt); eqInt=setInterval(()=>{ bars.forEach(b=> b.style.height = (10 + Math.random()*70) + 'px') }, 180); }
+function stopEq(){ clearInterval(eqInt); document.querySelectorAll('.bar').forEach(b=> b.style.height='18px'); }
+
+// poison particles
+function spawnParticles(n){
+  for(let i=0;i<n;i++){
+    const el=document.createElement('div');
+    el.className='poison-particle';
+    el.style.left = (Math.random()*100)+'vw';
+    el.style.top = (60 + Math.random()*30)+'vh';
+    el.style.animationDelay = (Math.random()*6)+'s';
+    el.style.opacity = 0.9*Math.random()+0.1;
+    document.body.appendChild(el);
+  }
 }
-typeWriter();
-</script>
+spawnParticles(16);
 
+// blood drops
+function spawnDrops(count){
+  for(let i=0;i<count;i++){
+    const d=document.createElement('div');
+    d.className='blood-drop';
+    d.style.left = (Math.random()*100)+'vw';
+    d.style.width = (6 + Math.random()*12)+'px';
+    d.style.height = (10 + Math.random()*28)+'px';
+    d.style.animationDuration = (2.6 + Math.random()*3.2) + 's';
+    d.style.animationDelay = (Math.random()*3)+'s';
+    document.body.appendChild(d);
+  }
+}
+spawnDrops(22);
+
+</script>
 </body>
 </html>
